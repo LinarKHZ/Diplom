@@ -1,0 +1,46 @@
+﻿<Page x:Class="KlinicaConsole.Frames.SelectDoctor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KlinicaConsole.Frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SelectDoctor" Background="WhiteSmoke" ShowsNavigationUI="False">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="1" Grid.Row="2" Content="Все Врачи" HorizontalAlignment="Center" Width="300" Height="65"  VerticalAlignment="Center" Background="#FFCBF7FF" FontFamily="Calibri Light" FontSize="24" Click="FullClick"/>
+        <Button Grid.Column="0" Grid.Row="0" Content="Войти по полису" HorizontalAlignment="Center" Width="300" Height="65"  VerticalAlignment="Center" Background="#FFCBF7FF" FontFamily="Calibri Light" FontSize="24" Click="PolisClick"/>
+        <ListBox Grid.Column="1" Grid.Row="1" x:Name="ButPanel" Background="WhiteSmoke">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DoctorClick" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#FFCBF7FF" >
+                        <TextBlock  Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" FontSize="24" FontWeight="Bold"/>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

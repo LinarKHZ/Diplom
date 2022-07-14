@@ -1,0 +1,1629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище KlinicaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="TimingId" Type="int" Nullable="false" />
+          <Property Name="ServicesId" Type="int" Nullable="false" />
+          <Property Name="Paid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DescriptionVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Complaints" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Anamnesis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Examination" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TreatmentPlan" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SurveyPlan" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Recommendations" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Conclusion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AppointmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WorkerId" Type="int" Nullable="false" />
+          <Property Name="PfileId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentsCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LabCatalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerId" Type="int" Nullable="false" />
+          <Property Name="AppointId" Type="int" Nullable="false" />
+          <Property Name="DateTimeTaken" Type="datetime" Nullable="false" />
+          <Property Name="DateResultExpected" Type="datetime" Nullable="false" />
+          <Property Name="DateResultReal" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LabResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LabCatalogId" Type="int" Nullable="false" />
+          <Property Name="Result" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PassportData" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportDate" Type="date" />
+          <Property Name="PassportDivisionCode" Type="char" MaxLength="7" />
+          <Property Name="SNILS" Type="char" MaxLength="11" />
+          <Property Name="INN" Type="char" MaxLength="15" />
+          <Property Name="Polis" Type="char" MaxLength="16" />
+          <Property Name="AdressRegistration" Type="nvarchar" MaxLength="150" />
+          <Property Name="AdressResidence" Type="nvarchar" MaxLength="150" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeTelephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlaceWork" Type="nvarchar(max)" />
+          <Property Name="Benefit" Type="int" Nullable="false" />
+          <Property Name="CreateDatetime" Type="datetime" Nullable="false" />
+          <Property Name="ModifeDatetime" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PaymentAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymontId" Type="int" Nullable="false" />
+          <Property Name="AppointmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Sum" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="WorkerId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Bin" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FunctionId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicesCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SocStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Timing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="WorkerId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="TimeS" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimeF" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimingSegmentation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeS" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimeF" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TimingId" Type="int" Nullable="false" />
+          <Property Name="Actively" Type="int" Nullable="false" />
+          <Property Name="AppointmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PassportData" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportDate" Type="date" Nullable="false" />
+          <Property Name="PassportDivisionCode" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="SNILS" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="INN" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Polis" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="MBook" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="AcademicDegree" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AdressRegistration" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="AdressResidence" Type="nvarchar" MaxLength="150" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeTelephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDatetime" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDatetime" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Deleted" Type="int" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WorkerFunction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="WorkerId" Type="int" Nullable="false" />
+          <Property Name="FunctionId" Type="int" Nullable="false" />
+          <Property Name="Cabinet" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Appointment_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointment_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ServicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointment_Timing">
+          <End Role="Timing" Type="Self.Timing" Multiplicity="1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timing">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="TimingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DescriptionVisit_Appointment">
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
+          <End Role="DescriptionVisit" Type="Self.DescriptionVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DescriptionVisit">
+              <PropertyRef Name="AppointmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_DocumentsCategory">
+          <End Role="DocumentsCategory" Type="Self.DocumentsCategory" Multiplicity="1" />
+          <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentsCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Pfile">
+          <End Role="Pfile" Type="Self.Pfile" Multiplicity="1" />
+          <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="PfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabCatalog_Appointment">
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
+          <End Role="LabCatalog" Type="Self.LabCatalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabCatalog">
+              <PropertyRef Name="AppointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabCatalog_WorkerFunction">
+          <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="1" />
+          <End Role="LabCatalog" Type="Self.LabCatalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerFunction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabCatalog">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabResult_LabCatalog">
+          <End Role="LabCatalog" Type="Self.LabCatalog" Multiplicity="1" />
+          <End Role="LabResult" Type="Self.LabResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabCatalog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabResult">
+              <PropertyRef Name="LabCatalogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_SocStatus1">
+          <End Role="SocStatus" Type="Self.SocStatus" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Benefit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentAppointment_Appointment">
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
+          <End Role="PaymentAppointment" Type="Self.PaymentAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentAppointment">
+              <PropertyRef Name="AppointmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentAppointment_PaymentHistory">
+          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="1" />
+          <End Role="PaymentAppointment" Type="Self.PaymentAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentAppointment">
+              <PropertyRef Name="PaymontId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistory_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentHistory">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistory_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentHistory">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Function">
+          <End Role="Function" Type="Self.Function" Multiplicity="1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_ServicesCategory">
+          <End Role="ServicesCategory" Type="Self.ServicesCategory" Multiplicity="1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServicesCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timing_WorkerFunction">
+          <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Timing" Type="Self.Timing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerFunction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timing">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimingSegmentation_Appointment">
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="0..1" />
+          <End Role="TimingSegmentation" Type="Self.TimingSegmentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimingSegmentation">
+              <PropertyRef Name="AppointmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimingSegmentation_Timing">
+          <End Role="Timing" Type="Self.Timing" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TimingSegmentation" Type="Self.TimingSegmentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timing">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimingSegmentation">
+              <PropertyRef Name="TimingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerFunction_Function1">
+          <End Role="Function" Type="Self.Function" Multiplicity="1" />
+          <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerFunction">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerFunction_Worker1">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerFunction">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KlinicaDBModelContainer">
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DescriptionVisit" EntityType="Self.DescriptionVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentsCategory" EntityType="Self.DocumentsCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Function" EntityType="Self.Function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabCatalog" EntityType="Self.LabCatalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabResult" EntityType="Self.LabResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentAppointment" EntityType="Self.PaymentAppointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentHistory" EntityType="Self.PaymentHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pfile" EntityType="Self.Pfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesCategory" EntityType="Self.ServicesCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocStatus" EntityType="Self.SocStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timing" EntityType="Self.Timing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimingSegmentation" EntityType="Self.TimingSegmentation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerFunction" EntityType="Self.WorkerFunction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointment_Services" Association="Self.FK_Appointment_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointment_Timing" Association="Self.FK_Appointment_Timing">
+            <End Role="Timing" EntitySet="Timing" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DescriptionVisit_Appointment" Association="Self.FK_DescriptionVisit_Appointment">
+            <End Role="Appointment" EntitySet="Appointment" />
+            <End Role="DescriptionVisit" EntitySet="DescriptionVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_DocumentsCategory" Association="Self.FK_Documents_DocumentsCategory">
+            <End Role="DocumentsCategory" EntitySet="DocumentsCategory" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Patient" Association="Self.FK_Documents_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Pfile" Association="Self.FK_Documents_Pfile">
+            <End Role="Pfile" EntitySet="Pfile" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Worker" Association="Self.FK_Documents_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabCatalog_Appointment" Association="Self.FK_LabCatalog_Appointment">
+            <End Role="Appointment" EntitySet="Appointment" />
+            <End Role="LabCatalog" EntitySet="LabCatalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabCatalog_WorkerFunction" Association="Self.FK_LabCatalog_WorkerFunction">
+            <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+            <End Role="LabCatalog" EntitySet="LabCatalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabResult_LabCatalog" Association="Self.FK_LabResult_LabCatalog">
+            <End Role="LabCatalog" EntitySet="LabCatalog" />
+            <End Role="LabResult" EntitySet="LabResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_SocStatus1" Association="Self.FK_Patient_SocStatus1">
+            <End Role="SocStatus" EntitySet="SocStatus" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentAppointment_Appointment" Association="Self.FK_PaymentAppointment_Appointment">
+            <End Role="Appointment" EntitySet="Appointment" />
+            <End Role="PaymentAppointment" EntitySet="PaymentAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentAppointment_PaymentHistory" Association="Self.FK_PaymentAppointment_PaymentHistory">
+            <End Role="PaymentHistory" EntitySet="PaymentHistory" />
+            <End Role="PaymentAppointment" EntitySet="PaymentAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistory_Patient" Association="Self.FK_PaymentHistory_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PaymentHistory" EntitySet="PaymentHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistory_Worker" Association="Self.FK_PaymentHistory_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="PaymentHistory" EntitySet="PaymentHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Function" Association="Self.FK_Services_Function">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_ServicesCategory" Association="Self.FK_Services_ServicesCategory">
+            <End Role="ServicesCategory" EntitySet="ServicesCategory" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timing_WorkerFunction" Association="Self.FK_Timing_WorkerFunction">
+            <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+            <End Role="Timing" EntitySet="Timing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimingSegmentation_Appointment" Association="Self.FK_TimingSegmentation_Appointment">
+            <End Role="Appointment" EntitySet="Appointment" />
+            <End Role="TimingSegmentation" EntitySet="TimingSegmentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimingSegmentation_Timing" Association="Self.FK_TimingSegmentation_Timing">
+            <End Role="Timing" EntitySet="Timing" />
+            <End Role="TimingSegmentation" EntitySet="TimingSegmentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Role" Association="Self.FK_Worker_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerFunction_Function1" Association="Self.FK_WorkerFunction_Function1">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerFunction_Worker1" Association="Self.FK_WorkerFunction_Worker1">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KlinicaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KlinicaDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appointments" EntityType="KlinicaDBModel.Appointment" />
+          <EntitySet Name="DescriptionVisits" EntityType="KlinicaDBModel.DescriptionVisit" />
+          <EntitySet Name="Documents" EntityType="KlinicaDBModel.Document" />
+          <EntitySet Name="DocumentsCategories" EntityType="KlinicaDBModel.DocumentsCategory" />
+          <EntitySet Name="Functions" EntityType="KlinicaDBModel.Function" />
+          <EntitySet Name="LabCatalogs" EntityType="KlinicaDBModel.LabCatalog" />
+          <EntitySet Name="LabResults" EntityType="KlinicaDBModel.LabResult" />
+          <EntitySet Name="Patients" EntityType="KlinicaDBModel.Patient" />
+          <EntitySet Name="PaymentAppointments" EntityType="KlinicaDBModel.PaymentAppointment" />
+          <EntitySet Name="PaymentHistories" EntityType="KlinicaDBModel.PaymentHistory" />
+          <EntitySet Name="Pfiles" EntityType="KlinicaDBModel.Pfile" />
+          <EntitySet Name="Roles" EntityType="KlinicaDBModel.Role" />
+          <EntitySet Name="Services" EntityType="KlinicaDBModel.Service" />
+          <EntitySet Name="ServicesCategories" EntityType="KlinicaDBModel.ServicesCategory" />
+          <EntitySet Name="SocStatus" EntityType="KlinicaDBModel.SocStatu" />
+          <EntitySet Name="sysdiagrams" EntityType="KlinicaDBModel.sysdiagram" />
+          <EntitySet Name="Timings" EntityType="KlinicaDBModel.Timing" />
+          <EntitySet Name="TimingSegmentations" EntityType="KlinicaDBModel.TimingSegmentation" />
+          <EntitySet Name="Workers" EntityType="KlinicaDBModel.Worker" />
+          <EntitySet Name="WorkerFunctions" EntityType="KlinicaDBModel.WorkerFunction" />
+          <AssociationSet Name="FK_Appointment_Patient" Association="KlinicaDBModel.FK_Appointment_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointment_Services" Association="KlinicaDBModel.FK_Appointment_Services">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointment_Timing" Association="KlinicaDBModel.FK_Appointment_Timing">
+            <End Role="Timing" EntitySet="Timings" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DescriptionVisit_Appointment" Association="KlinicaDBModel.FK_DescriptionVisit_Appointment">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="DescriptionVisit" EntitySet="DescriptionVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabCatalog_Appointment" Association="KlinicaDBModel.FK_LabCatalog_Appointment">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="LabCatalog" EntitySet="LabCatalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentAppointment_Appointment" Association="KlinicaDBModel.FK_PaymentAppointment_Appointment">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="PaymentAppointment" EntitySet="PaymentAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimingSegmentation_Appointment" Association="KlinicaDBModel.FK_TimingSegmentation_Appointment">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="TimingSegmentation" EntitySet="TimingSegmentations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_DocumentsCategory" Association="KlinicaDBModel.FK_Documents_DocumentsCategory">
+            <End Role="DocumentsCategory" EntitySet="DocumentsCategories" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Patient" Association="KlinicaDBModel.FK_Documents_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Pfile" Association="KlinicaDBModel.FK_Documents_Pfile">
+            <End Role="Pfile" EntitySet="Pfiles" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Worker" Association="KlinicaDBModel.FK_Documents_Worker">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Function" Association="KlinicaDBModel.FK_Services_Function">
+            <End Role="Function" EntitySet="Functions" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerFunction_Function1" Association="KlinicaDBModel.FK_WorkerFunction_Function1">
+            <End Role="Function" EntitySet="Functions" />
+            <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabCatalog_WorkerFunction" Association="KlinicaDBModel.FK_LabCatalog_WorkerFunction">
+            <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+            <End Role="LabCatalog" EntitySet="LabCatalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabResult_LabCatalog" Association="KlinicaDBModel.FK_LabResult_LabCatalog">
+            <End Role="LabCatalog" EntitySet="LabCatalogs" />
+            <End Role="LabResult" EntitySet="LabResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_SocStatus1" Association="KlinicaDBModel.FK_Patient_SocStatus1">
+            <End Role="SocStatu" EntitySet="SocStatus" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistory_Patient" Association="KlinicaDBModel.FK_PaymentHistory_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PaymentHistory" EntitySet="PaymentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentAppointment_PaymentHistory" Association="KlinicaDBModel.FK_PaymentAppointment_PaymentHistory">
+            <End Role="PaymentHistory" EntitySet="PaymentHistories" />
+            <End Role="PaymentAppointment" EntitySet="PaymentAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistory_Worker" Association="KlinicaDBModel.FK_PaymentHistory_Worker">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="PaymentHistory" EntitySet="PaymentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Role" Association="KlinicaDBModel.FK_Worker_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Worker" EntitySet="Workers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_ServicesCategory" Association="KlinicaDBModel.FK_Services_ServicesCategory">
+            <End Role="ServicesCategory" EntitySet="ServicesCategories" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timing_WorkerFunction" Association="KlinicaDBModel.FK_Timing_WorkerFunction">
+            <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+            <End Role="Timing" EntitySet="Timings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimingSegmentation_Timing" Association="KlinicaDBModel.FK_TimingSegmentation_Timing">
+            <End Role="Timing" EntitySet="Timings" />
+            <End Role="TimingSegmentation" EntitySet="TimingSegmentations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerFunction_Worker1" Association="KlinicaDBModel.FK_WorkerFunction_Worker1">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="TimingId" Type="Int32" Nullable="false" />
+          <Property Name="ServicesId" Type="Int32" Nullable="false" />
+          <Property Name="Paid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="KlinicaDBModel.FK_Appointment_Patient" FromRole="Appointment" ToRole="Patient" />
+          <NavigationProperty Name="Service" Relationship="KlinicaDBModel.FK_Appointment_Services" FromRole="Appointment" ToRole="Service" />
+          <NavigationProperty Name="Timing" Relationship="KlinicaDBModel.FK_Appointment_Timing" FromRole="Appointment" ToRole="Timing" />
+          <NavigationProperty Name="DescriptionVisits" Relationship="KlinicaDBModel.FK_DescriptionVisit_Appointment" FromRole="Appointment" ToRole="DescriptionVisit" />
+          <NavigationProperty Name="LabCatalogs" Relationship="KlinicaDBModel.FK_LabCatalog_Appointment" FromRole="Appointment" ToRole="LabCatalog" />
+          <NavigationProperty Name="PaymentAppointments" Relationship="KlinicaDBModel.FK_PaymentAppointment_Appointment" FromRole="Appointment" ToRole="PaymentAppointment" />
+          <NavigationProperty Name="TimingSegmentations" Relationship="KlinicaDBModel.FK_TimingSegmentation_Appointment" FromRole="Appointment" ToRole="TimingSegmentation" />
+        </EntityType>
+        <EntityType Name="DescriptionVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Complaints" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Anamnesis" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Examination" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TreatmentPlan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyPlan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Recommendations" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Conclusion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AppointmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointment" Relationship="KlinicaDBModel.FK_DescriptionVisit_Appointment" FromRole="DescriptionVisit" ToRole="Appointment" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerId" Type="Int32" Nullable="false" />
+          <Property Name="PfileId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DocumentsCategory" Relationship="KlinicaDBModel.FK_Documents_DocumentsCategory" FromRole="Document" ToRole="DocumentsCategory" />
+          <NavigationProperty Name="Patient" Relationship="KlinicaDBModel.FK_Documents_Patient" FromRole="Document" ToRole="Patient" />
+          <NavigationProperty Name="Pfile" Relationship="KlinicaDBModel.FK_Documents_Pfile" FromRole="Document" ToRole="Pfile" />
+          <NavigationProperty Name="Worker" Relationship="KlinicaDBModel.FK_Documents_Worker" FromRole="Document" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="DocumentsCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Documents" Relationship="KlinicaDBModel.FK_Documents_DocumentsCategory" FromRole="DocumentsCategory" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Services" Relationship="KlinicaDBModel.FK_Services_Function" FromRole="Function" ToRole="Service" />
+          <NavigationProperty Name="WorkerFunctions" Relationship="KlinicaDBModel.FK_WorkerFunction_Function1" FromRole="Function" ToRole="WorkerFunction" />
+        </EntityType>
+        <EntityType Name="LabCatalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerId" Type="Int32" Nullable="false" />
+          <Property Name="AppointId" Type="Int32" Nullable="false" />
+          <Property Name="DateTimeTaken" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateResultExpected" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateResultReal" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Appointment" Relationship="KlinicaDBModel.FK_LabCatalog_Appointment" FromRole="LabCatalog" ToRole="Appointment" />
+          <NavigationProperty Name="WorkerFunction" Relationship="KlinicaDBModel.FK_LabCatalog_WorkerFunction" FromRole="LabCatalog" ToRole="WorkerFunction" />
+          <NavigationProperty Name="LabResults" Relationship="KlinicaDBModel.FK_LabResult_LabCatalog" FromRole="LabCatalog" ToRole="LabResult" />
+        </EntityType>
+        <EntityType Name="LabResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LabCatalogId" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LabCatalog" Relationship="KlinicaDBModel.FK_LabResult_LabCatalog" FromRole="LabResult" ToRole="LabCatalog" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sex" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PassportData" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportDate" Type="DateTime" Precision="0" />
+          <Property Name="PassportDivisionCode" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="SNILS" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="INN" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Polis" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="AdressRegistration" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AdressResidence" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Benefit" Type="Int32" Nullable="false" />
+          <Property Name="CreateDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifeDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Appointments" Relationship="KlinicaDBModel.FK_Appointment_Patient" FromRole="Patient" ToRole="Appointment" />
+          <NavigationProperty Name="Documents" Relationship="KlinicaDBModel.FK_Documents_Patient" FromRole="Patient" ToRole="Document" />
+          <NavigationProperty Name="SocStatu" Relationship="KlinicaDBModel.FK_Patient_SocStatus1" FromRole="Patient" ToRole="SocStatu" />
+          <NavigationProperty Name="PaymentHistories" Relationship="KlinicaDBModel.FK_PaymentHistory_Patient" FromRole="Patient" ToRole="PaymentHistory" />
+        </EntityType>
+        <EntityType Name="PaymentAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymontId" Type="Int32" Nullable="false" />
+          <Property Name="AppointmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointment" Relationship="KlinicaDBModel.FK_PaymentAppointment_Appointment" FromRole="PaymentAppointment" ToRole="Appointment" />
+          <NavigationProperty Name="PaymentHistory" Relationship="KlinicaDBModel.FK_PaymentAppointment_PaymentHistory" FromRole="PaymentAppointment" ToRole="PaymentHistory" />
+        </EntityType>
+        <EntityType Name="PaymentHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sum" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="WorkerId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="KlinicaDBModel.FK_PaymentHistory_Patient" FromRole="PaymentHistory" ToRole="Patient" />
+          <NavigationProperty Name="PaymentAppointments" Relationship="KlinicaDBModel.FK_PaymentAppointment_PaymentHistory" FromRole="PaymentHistory" ToRole="PaymentAppointment" />
+          <NavigationProperty Name="Worker" Relationship="KlinicaDBModel.FK_PaymentHistory_Worker" FromRole="PaymentHistory" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Pfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bin" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Documents" Relationship="KlinicaDBModel.FK_Documents_Pfile" FromRole="Pfile" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Workers" Relationship="KlinicaDBModel.FK_Worker_Role" FromRole="Role" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointments" Relationship="KlinicaDBModel.FK_Appointment_Services" FromRole="Service" ToRole="Appointment" />
+          <NavigationProperty Name="Function" Relationship="KlinicaDBModel.FK_Services_Function" FromRole="Service" ToRole="Function" />
+          <NavigationProperty Name="ServicesCategory" Relationship="KlinicaDBModel.FK_Services_ServicesCategory" FromRole="Service" ToRole="ServicesCategory" />
+        </EntityType>
+        <EntityType Name="ServicesCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Services" Relationship="KlinicaDBModel.FK_Services_ServicesCategory" FromRole="ServicesCategory" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="SocStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Patients" Relationship="KlinicaDBModel.FK_Patient_SocStatus1" FromRole="SocStatu" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Timing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="WorkerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeS" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimeF" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Appointments" Relationship="KlinicaDBModel.FK_Appointment_Timing" FromRole="Timing" ToRole="Appointment" />
+          <NavigationProperty Name="WorkerFunction" Relationship="KlinicaDBModel.FK_Timing_WorkerFunction" FromRole="Timing" ToRole="WorkerFunction" />
+          <NavigationProperty Name="TimingSegmentations" Relationship="KlinicaDBModel.FK_TimingSegmentation_Timing" FromRole="Timing" ToRole="TimingSegmentation" />
+        </EntityType>
+        <EntityType Name="TimingSegmentation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeS" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimeF" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TimingId" Type="Int32" Nullable="false" />
+          <Property Name="Actively" Type="Int32" Nullable="false" />
+          <Property Name="AppointmentId" Type="Int32" />
+          <NavigationProperty Name="Appointment" Relationship="KlinicaDBModel.FK_TimingSegmentation_Appointment" FromRole="TimingSegmentation" ToRole="Appointment" />
+          <NavigationProperty Name="Timing" Relationship="KlinicaDBModel.FK_TimingSegmentation_Timing" FromRole="TimingSegmentation" ToRole="Timing" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sex" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PassportData" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PassportDivisionCode" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="SNILS" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="INN" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Polis" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="MBook" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="AcademicDegree" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AdressRegistration" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AdressResidence" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Int32" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Documents" Relationship="KlinicaDBModel.FK_Documents_Worker" FromRole="Worker" ToRole="Document" />
+          <NavigationProperty Name="PaymentHistories" Relationship="KlinicaDBModel.FK_PaymentHistory_Worker" FromRole="Worker" ToRole="PaymentHistory" />
+          <NavigationProperty Name="Role" Relationship="KlinicaDBModel.FK_Worker_Role" FromRole="Worker" ToRole="Role" />
+          <NavigationProperty Name="WorkerFunctions" Relationship="KlinicaDBModel.FK_WorkerFunction_Worker1" FromRole="Worker" ToRole="WorkerFunction" />
+        </EntityType>
+        <EntityType Name="WorkerFunction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="WorkerId" Type="Int32" Nullable="false" />
+          <Property Name="FunctionId" Type="Int32" Nullable="false" />
+          <Property Name="Cabinet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Function" Relationship="KlinicaDBModel.FK_WorkerFunction_Function1" FromRole="WorkerFunction" ToRole="Function" />
+          <NavigationProperty Name="LabCatalogs" Relationship="KlinicaDBModel.FK_LabCatalog_WorkerFunction" FromRole="WorkerFunction" ToRole="LabCatalog" />
+          <NavigationProperty Name="Timings" Relationship="KlinicaDBModel.FK_Timing_WorkerFunction" FromRole="WorkerFunction" ToRole="Timing" />
+          <NavigationProperty Name="Worker" Relationship="KlinicaDBModel.FK_WorkerFunction_Worker1" FromRole="WorkerFunction" ToRole="Worker" />
+        </EntityType>
+        <Association Name="FK_Appointment_Patient">
+          <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointment_Services">
+          <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ServicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointment_Timing">
+          <End Type="KlinicaDBModel.Timing" Role="Timing" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timing">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="TimingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DescriptionVisit_Appointment">
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="KlinicaDBModel.DescriptionVisit" Role="DescriptionVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DescriptionVisit">
+              <PropertyRef Name="AppointmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabCatalog_Appointment">
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="KlinicaDBModel.LabCatalog" Role="LabCatalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabCatalog">
+              <PropertyRef Name="AppointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentAppointment_Appointment">
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="KlinicaDBModel.PaymentAppointment" Role="PaymentAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentAppointment">
+              <PropertyRef Name="AppointmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimingSegmentation_Appointment">
+          <End Type="KlinicaDBModel.Appointment" Role="Appointment" Multiplicity="0..1" />
+          <End Type="KlinicaDBModel.TimingSegmentation" Role="TimingSegmentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimingSegmentation">
+              <PropertyRef Name="AppointmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_DocumentsCategory">
+          <End Type="KlinicaDBModel.DocumentsCategory" Role="DocumentsCategory" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentsCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Patient">
+          <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="KlinicaDBModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Pfile">
+          <End Type="KlinicaDBModel.Pfile" Role="Pfile" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="PfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Worker">
+          <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Function">
+          <End Type="KlinicaDBModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerFunction_Function1">
+          <End Type="KlinicaDBModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerFunction">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabCatalog_WorkerFunction">
+          <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="1" />
+          <End Type="KlinicaDBModel.LabCatalog" Role="LabCatalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerFunction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabCatalog">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabResult_LabCatalog">
+          <End Type="KlinicaDBModel.LabCatalog" Role="LabCatalog" Multiplicity="1" />
+          <End Type="KlinicaDBModel.LabResult" Role="LabResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabCatalog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LabResult">
+              <PropertyRef Name="LabCatalogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_SocStatus1">
+          <End Type="KlinicaDBModel.SocStatu" Role="SocStatu" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Benefit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistory_Patient">
+          <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="KlinicaDBModel.PaymentHistory" Role="PaymentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentHistory">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentAppointment_PaymentHistory">
+          <End Type="KlinicaDBModel.PaymentHistory" Role="PaymentHistory" Multiplicity="1" />
+          <End Type="KlinicaDBModel.PaymentAppointment" Role="PaymentAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentAppointment">
+              <PropertyRef Name="PaymontId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistory_Worker">
+          <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="KlinicaDBModel.PaymentHistory" Role="PaymentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentHistory">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Role">
+          <End Type="KlinicaDBModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_ServicesCategory">
+          <End Type="KlinicaDBModel.ServicesCategory" Role="ServicesCategory" Multiplicity="1" />
+          <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServicesCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timing_WorkerFunction">
+          <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KlinicaDBModel.Timing" Role="Timing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerFunction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timing">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimingSegmentation_Timing">
+          <End Type="KlinicaDBModel.Timing" Role="Timing" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KlinicaDBModel.TimingSegmentation" Role="TimingSegmentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timing">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimingSegmentation">
+              <PropertyRef Name="TimingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerFunction_Worker1">
+          <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerFunction">
+              <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KlinicaDBModelContainer" CdmEntityContainer="KlinicaDBEntities1">
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="ServicesId" ColumnName="ServicesId" />
+                <ScalarProperty Name="TimingId" ColumnName="TimingId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DescriptionVisits">
+            <EntityTypeMapping TypeName="KlinicaDBModel.DescriptionVisit">
+              <MappingFragment StoreEntitySet="DescriptionVisit">
+                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+                <ScalarProperty Name="Conclusion" ColumnName="Conclusion" />
+                <ScalarProperty Name="Recommendations" ColumnName="Recommendations" />
+                <ScalarProperty Name="SurveyPlan" ColumnName="SurveyPlan" />
+                <ScalarProperty Name="TreatmentPlan" ColumnName="TreatmentPlan" />
+                <ScalarProperty Name="Examination" ColumnName="Examination" />
+                <ScalarProperty Name="Anamnesis" ColumnName="Anamnesis" />
+                <ScalarProperty Name="Complaints" ColumnName="Complaints" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Document">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PfileId" ColumnName="PfileId" />
+                <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentsCategories">
+            <EntityTypeMapping TypeName="KlinicaDBModel.DocumentsCategory">
+              <MappingFragment StoreEntitySet="DocumentsCategory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Functions">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Function">
+              <MappingFragment StoreEntitySet="Function">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabCatalogs">
+            <EntityTypeMapping TypeName="KlinicaDBModel.LabCatalog">
+              <MappingFragment StoreEntitySet="LabCatalog">
+                <ScalarProperty Name="DateResultReal" ColumnName="DateResultReal" />
+                <ScalarProperty Name="DateResultExpected" ColumnName="DateResultExpected" />
+                <ScalarProperty Name="DateTimeTaken" ColumnName="DateTimeTaken" />
+                <ScalarProperty Name="AppointId" ColumnName="AppointId" />
+                <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabResults">
+            <EntityTypeMapping TypeName="KlinicaDBModel.LabResult">
+              <MappingFragment StoreEntitySet="LabResult">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="LabCatalogId" ColumnName="LabCatalogId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ModifeDatetime" ColumnName="ModifeDatetime" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+                <ScalarProperty Name="PlaceWork" ColumnName="PlaceWork" />
+                <ScalarProperty Name="HomeTelephone" ColumnName="HomeTelephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="AdressResidence" ColumnName="AdressResidence" />
+                <ScalarProperty Name="AdressRegistration" ColumnName="AdressRegistration" />
+                <ScalarProperty Name="Polis" ColumnName="Polis" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="SNILS" ColumnName="SNILS" />
+                <ScalarProperty Name="PassportDivisionCode" ColumnName="PassportDivisionCode" />
+                <ScalarProperty Name="PassportDate" ColumnName="PassportDate" />
+                <ScalarProperty Name="PassportData" ColumnName="PassportData" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentAppointments">
+            <EntityTypeMapping TypeName="KlinicaDBModel.PaymentAppointment">
+              <MappingFragment StoreEntitySet="PaymentAppointment">
+                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+                <ScalarProperty Name="PaymontId" ColumnName="PaymontId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentHistories">
+            <EntityTypeMapping TypeName="KlinicaDBModel.PaymentHistory">
+              <MappingFragment StoreEntitySet="PaymentHistory">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pfiles">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Pfile">
+              <MappingFragment StoreEntitySet="Pfile">
+                <ScalarProperty Name="Bin" ColumnName="Bin" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesCategories">
+            <EntityTypeMapping TypeName="KlinicaDBModel.ServicesCategory">
+              <MappingFragment StoreEntitySet="ServicesCategory">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocStatus">
+            <EntityTypeMapping TypeName="KlinicaDBModel.SocStatu">
+              <MappingFragment StoreEntitySet="SocStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KlinicaDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timings">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Timing">
+              <MappingFragment StoreEntitySet="Timing">
+                <ScalarProperty Name="TimeF" ColumnName="TimeF" />
+                <ScalarProperty Name="TimeS" ColumnName="TimeS" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimingSegmentations">
+            <EntityTypeMapping TypeName="KlinicaDBModel.TimingSegmentation">
+              <MappingFragment StoreEntitySet="TimingSegmentation">
+                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+                <ScalarProperty Name="Actively" ColumnName="Actively" />
+                <ScalarProperty Name="TimingId" ColumnName="TimingId" />
+                <ScalarProperty Name="TimeF" ColumnName="TimeF" />
+                <ScalarProperty Name="TimeS" ColumnName="TimeS" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="KlinicaDBModel.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ModifyDatetime" ColumnName="ModifyDatetime" />
+                <ScalarProperty Name="CreateDatetime" ColumnName="CreateDatetime" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="HomeTelephone" ColumnName="HomeTelephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="AdressResidence" ColumnName="AdressResidence" />
+                <ScalarProperty Name="AdressRegistration" ColumnName="AdressRegistration" />
+                <ScalarProperty Name="AcademicDegree" ColumnName="AcademicDegree" />
+                <ScalarProperty Name="MBook" ColumnName="MBook" />
+                <ScalarProperty Name="Polis" ColumnName="Polis" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="SNILS" ColumnName="SNILS" />
+                <ScalarProperty Name="PassportDivisionCode" ColumnName="PassportDivisionCode" />
+                <ScalarProperty Name="PassportDate" ColumnName="PassportDate" />
+                <ScalarProperty Name="PassportData" ColumnName="PassportData" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerFunctions">
+            <EntityTypeMapping TypeName="KlinicaDBModel.WorkerFunction">
+              <MappingFragment StoreEntitySet="WorkerFunction">
+                <ScalarProperty Name="Cabinet" ColumnName="Cabinet" />
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+                <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

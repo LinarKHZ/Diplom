@@ -1,0 +1,647 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KlinicaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientId" Type="int" Nullable="false" />
+    <Property Name="TimingId" Type="int" Nullable="false" />
+    <Property Name="ServicesId" Type="int" Nullable="false" />
+    <Property Name="Paid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DescriptionVisit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Complaints" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Anamnesis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Examination" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TreatmentPlan" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SurveyPlan" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Recommendations" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Conclusion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AppointmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkerId" Type="int" Nullable="false" />
+    <Property Name="PfileId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentsCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Function">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LabCatalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkerId" Type="int" Nullable="false" />
+    <Property Name="AppointId" Type="int" Nullable="false" />
+    <Property Name="DateTimeTaken" Type="datetime" Nullable="false" />
+    <Property Name="DateResultExpected" Type="datetime" Nullable="false" />
+    <Property Name="DateResultReal" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LabResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LabCatalogId" Type="int" Nullable="false" />
+    <Property Name="Result" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="PassportData" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PassportDate" Type="date" />
+    <Property Name="PassportDivisionCode" Type="char" MaxLength="7" />
+    <Property Name="SNILS" Type="char" MaxLength="11" />
+    <Property Name="INN" Type="char" MaxLength="15" />
+    <Property Name="Polis" Type="char" MaxLength="16" />
+    <Property Name="AdressRegistration" Type="nvarchar" MaxLength="150" />
+    <Property Name="AdressResidence" Type="nvarchar" MaxLength="150" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="HomeTelephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlaceWork" Type="nvarchar(max)" />
+    <Property Name="Benefit" Type="int" Nullable="false" />
+    <Property Name="CreateDatetime" Type="datetime" Nullable="false" />
+    <Property Name="ModifeDatetime" Type="datetime" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PaymentAppointment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymontId" Type="int" Nullable="false" />
+    <Property Name="AppointmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Sum" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PatientId" Type="int" Nullable="false" />
+    <Property Name="WorkerId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Bin" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FunctionId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServicesCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SocStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Timing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="WorkerId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="TimeS" Type="time" Precision="7" Nullable="false" />
+    <Property Name="TimeF" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimingSegmentation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeS" Type="time" Precision="7" Nullable="false" />
+    <Property Name="TimeF" Type="time" Precision="7" Nullable="false" />
+    <Property Name="TimingId" Type="int" Nullable="false" />
+    <Property Name="Actively" Type="int" Nullable="false" />
+    <Property Name="AppointmentId" Type="int" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="PassportData" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PassportDate" Type="date" Nullable="false" />
+    <Property Name="PassportDivisionCode" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="SNILS" Type="char" MaxLength="11" Nullable="false" />
+    <Property Name="INN" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="Polis" Type="char" MaxLength="16" Nullable="false" />
+    <Property Name="MBook" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="AcademicDegree" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="AdressRegistration" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="AdressResidence" Type="nvarchar" MaxLength="150" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="HomeTelephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateDatetime" Type="datetime" Nullable="false" />
+    <Property Name="ModifyDatetime" Type="datetime" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="Deleted" Type="int" Nullable="false" />
+    <Property Name="DateDeleted" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WorkerFunction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="WorkerId" Type="int" Nullable="false" />
+    <Property Name="FunctionId" Type="int" Nullable="false" />
+    <Property Name="Cabinet" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Appointment_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ServicesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Timing">
+    <End Role="Timing" Type="Self.Timing" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="TimingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DescriptionVisit_Appointment">
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
+    <End Role="DescriptionVisit" Type="Self.DescriptionVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DescriptionVisit">
+        <PropertyRef Name="AppointmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_DocumentsCategory">
+    <End Role="DocumentsCategory" Type="Self.DocumentsCategory" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentsCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Pfile">
+    <End Role="Pfile" Type="Self.Pfile" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="PfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documents_Worker">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabCatalog_Appointment">
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
+    <End Role="LabCatalog" Type="Self.LabCatalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LabCatalog">
+        <PropertyRef Name="AppointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabCatalog_WorkerFunction">
+    <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="1" />
+    <End Role="LabCatalog" Type="Self.LabCatalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkerFunction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LabCatalog">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabResult_LabCatalog">
+    <End Role="LabCatalog" Type="Self.LabCatalog" Multiplicity="1" />
+    <End Role="LabResult" Type="Self.LabResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabCatalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LabResult">
+        <PropertyRef Name="LabCatalogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_SocStatus1">
+    <End Role="SocStatus" Type="Self.SocStatus" Multiplicity="1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="Benefit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentAppointment_Appointment">
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
+    <End Role="PaymentAppointment" Type="Self.PaymentAppointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentAppointment">
+        <PropertyRef Name="AppointmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentAppointment_PaymentHistory">
+    <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="1" />
+    <End Role="PaymentAppointment" Type="Self.PaymentAppointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentHistory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentAppointment">
+        <PropertyRef Name="PaymontId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentHistory_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentHistory">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentHistory_Worker">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+    <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentHistory">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_Function">
+    <End Role="Function" Type="Self.Function" Multiplicity="1" />
+    <End Role="Services" Type="Self.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Function">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="FunctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_ServicesCategory">
+    <End Role="ServicesCategory" Type="Self.ServicesCategory" Multiplicity="1" />
+    <End Role="Services" Type="Self.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServicesCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timing_WorkerFunction">
+    <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Timing" Type="Self.Timing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkerFunction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timing">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimingSegmentation_Appointment">
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="0..1" />
+    <End Role="TimingSegmentation" Type="Self.TimingSegmentation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimingSegmentation">
+        <PropertyRef Name="AppointmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimingSegmentation_Timing">
+    <End Role="Timing" Type="Self.Timing" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimingSegmentation" Type="Self.TimingSegmentation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimingSegmentation">
+        <PropertyRef Name="TimingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Worker_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkerFunction_Function1">
+    <End Role="Function" Type="Self.Function" Multiplicity="1" />
+    <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Function">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkerFunction">
+        <PropertyRef Name="FunctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkerFunction_Worker1">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WorkerFunction" Type="Self.WorkerFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkerFunction">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище KlinicaDBModelContainer">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DescriptionVisit" EntityType="Self.DescriptionVisit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentsCategory" EntityType="Self.DocumentsCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Function" EntityType="Self.Function" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabCatalog" EntityType="Self.LabCatalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabResult" EntityType="Self.LabResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentAppointment" EntityType="Self.PaymentAppointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentHistory" EntityType="Self.PaymentHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pfile" EntityType="Self.Pfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicesCategory" EntityType="Self.ServicesCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocStatus" EntityType="Self.SocStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timing" EntityType="Self.Timing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimingSegmentation" EntityType="Self.TimingSegmentation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkerFunction" EntityType="Self.WorkerFunction" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Appointment_Patient" Association="Self.FK_Appointment_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Services" Association="Self.FK_Appointment_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Timing" Association="Self.FK_Appointment_Timing">
+      <End Role="Timing" EntitySet="Timing" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DescriptionVisit_Appointment" Association="Self.FK_DescriptionVisit_Appointment">
+      <End Role="Appointment" EntitySet="Appointment" />
+      <End Role="DescriptionVisit" EntitySet="DescriptionVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_DocumentsCategory" Association="Self.FK_Documents_DocumentsCategory">
+      <End Role="DocumentsCategory" EntitySet="DocumentsCategory" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Patient" Association="Self.FK_Documents_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Pfile" Association="Self.FK_Documents_Pfile">
+      <End Role="Pfile" EntitySet="Pfile" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documents_Worker" Association="Self.FK_Documents_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabCatalog_Appointment" Association="Self.FK_LabCatalog_Appointment">
+      <End Role="Appointment" EntitySet="Appointment" />
+      <End Role="LabCatalog" EntitySet="LabCatalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabCatalog_WorkerFunction" Association="Self.FK_LabCatalog_WorkerFunction">
+      <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+      <End Role="LabCatalog" EntitySet="LabCatalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabResult_LabCatalog" Association="Self.FK_LabResult_LabCatalog">
+      <End Role="LabCatalog" EntitySet="LabCatalog" />
+      <End Role="LabResult" EntitySet="LabResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_SocStatus1" Association="Self.FK_Patient_SocStatus1">
+      <End Role="SocStatus" EntitySet="SocStatus" />
+      <End Role="Patient" EntitySet="Patient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentAppointment_Appointment" Association="Self.FK_PaymentAppointment_Appointment">
+      <End Role="Appointment" EntitySet="Appointment" />
+      <End Role="PaymentAppointment" EntitySet="PaymentAppointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentAppointment_PaymentHistory" Association="Self.FK_PaymentAppointment_PaymentHistory">
+      <End Role="PaymentHistory" EntitySet="PaymentHistory" />
+      <End Role="PaymentAppointment" EntitySet="PaymentAppointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentHistory_Patient" Association="Self.FK_PaymentHistory_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PaymentHistory" EntitySet="PaymentHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentHistory_Worker" Association="Self.FK_PaymentHistory_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="PaymentHistory" EntitySet="PaymentHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_Function" Association="Self.FK_Services_Function">
+      <End Role="Function" EntitySet="Function" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_ServicesCategory" Association="Self.FK_Services_ServicesCategory">
+      <End Role="ServicesCategory" EntitySet="ServicesCategory" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timing_WorkerFunction" Association="Self.FK_Timing_WorkerFunction">
+      <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+      <End Role="Timing" EntitySet="Timing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimingSegmentation_Appointment" Association="Self.FK_TimingSegmentation_Appointment">
+      <End Role="Appointment" EntitySet="Appointment" />
+      <End Role="TimingSegmentation" EntitySet="TimingSegmentation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimingSegmentation_Timing" Association="Self.FK_TimingSegmentation_Timing">
+      <End Role="Timing" EntitySet="Timing" />
+      <End Role="TimingSegmentation" EntitySet="TimingSegmentation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Worker_Role" Association="Self.FK_Worker_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Worker" EntitySet="Worker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkerFunction_Function1" Association="Self.FK_WorkerFunction_Function1">
+      <End Role="Function" EntitySet="Function" />
+      <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkerFunction_Worker1" Association="Self.FK_WorkerFunction_Worker1">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="WorkerFunction" EntitySet="WorkerFunction" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

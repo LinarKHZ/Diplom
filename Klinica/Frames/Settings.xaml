@@ -1,0 +1,18 @@
+﻿<Page x:Class="Klinica.Frames.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Klinica.Frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="924" d:DesignWidth="1350"
+      Title="Settings">
+
+    <Grid Background="White">
+        <TextBlock Text="Выберете тему" FontFamily="Calibri Light" FontSize="24" Margin="100,100,0,0" HorizontalAlignment="Left" Width="194" Height="38" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Vertical" Margin="100,150,0,0">
+            <RadioButton Content="Светлая" IsChecked="True" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+            <RadioButton Content="Темная" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        </StackPanel>
+    </Grid>
+</Page>

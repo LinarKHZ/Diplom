@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d5b771ad9d443d3a9035e7fa6497d83" Name="Diagram1">
+        <EntityTypeShape EntityType="KlinicaDBModel.Appointment" Width="1.5" PointX="10.5" PointY="8" />
+        <EntityTypeShape EntityType="KlinicaDBModel.DescriptionVisit" Width="1.5" PointX="12.75" PointY="10.875" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Document" Width="1.5" PointX="10.5" PointY="12.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.DocumentsCategory" Width="1.5" PointX="8.25" PointY="14.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Function" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="KlinicaDBModel.LabCatalog" Width="1.5" PointX="15.75" PointY="8.25" />
+        <EntityTypeShape EntityType="KlinicaDBModel.LabResult" Width="1.5" PointX="18" PointY="8.625" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Patient" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="KlinicaDBModel.PaymentAppointment" Width="1.5" PointX="12.75" PointY="7.625" />
+        <EntityTypeShape EntityType="KlinicaDBModel.PaymentHistory" Width="1.5" PointX="10.5" PointY="4.25" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Pfile" Width="1.5" PointX="8.25" PointY="11.875" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Role" Width="1.5" PointX="1.5" PointY="14.875" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Service" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="KlinicaDBModel.ServicesCategory" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="KlinicaDBModel.SocStatu" Width="1.5" PointX="6" PointY="3" />
+        <EntityTypeShape EntityType="KlinicaDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Timing" Width="1.5" PointX="8.25" PointY="8.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.TimingSegmentation" Width="1.5" PointX="12.75" PointY="4.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Worker" Width="1.5" PointX="3.75" PointY="12.125" />
+        <EntityTypeShape EntityType="KlinicaDBModel.WorkerFunction" Width="1.5" PointX="6" PointY="8.375" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Appointment_Patient" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Appointment_Services" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Appointment_Timing" />
+        <AssociationConnector Association="KlinicaDBModel.FK_DescriptionVisit_Appointment" />
+        <AssociationConnector Association="KlinicaDBModel.FK_LabCatalog_Appointment" />
+        <AssociationConnector Association="KlinicaDBModel.FK_PaymentAppointment_Appointment" />
+        <AssociationConnector Association="KlinicaDBModel.FK_TimingSegmentation_Appointment" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Documents_DocumentsCategory" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Documents_Patient" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Documents_Pfile" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Documents_Worker" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Services_Function" />
+        <AssociationConnector Association="KlinicaDBModel.FK_WorkerFunction_Function1" />
+        <AssociationConnector Association="KlinicaDBModel.FK_LabCatalog_WorkerFunction" />
+        <AssociationConnector Association="KlinicaDBModel.FK_LabResult_LabCatalog" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Patient_SocStatus1" />
+        <AssociationConnector Association="KlinicaDBModel.FK_PaymentHistory_Patient" />
+        <AssociationConnector Association="KlinicaDBModel.FK_PaymentAppointment_PaymentHistory" />
+        <AssociationConnector Association="KlinicaDBModel.FK_PaymentHistory_Worker" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Worker_Role" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Services_ServicesCategory" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Timing_WorkerFunction" />
+        <AssociationConnector Association="KlinicaDBModel.FK_TimingSegmentation_Timing" />
+        <AssociationConnector Association="KlinicaDBModel.FK_WorkerFunction_Worker1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

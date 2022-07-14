@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KlinicaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KlinicaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cabinets" EntityType="KlinicaDBModel.Cabinet" />
+    <EntitySet Name="Functions" EntityType="KlinicaDBModel.Function" />
+    <EntitySet Name="HoneyCards" EntityType="KlinicaDBModel.HoneyCard" />
+    <EntitySet Name="Patients" EntityType="KlinicaDBModel.Patient" />
+    <EntitySet Name="Pfiles" EntityType="KlinicaDBModel.Pfile" />
+    <EntitySet Name="ReceptionServices" EntityType="KlinicaDBModel.ReceptionService" />
+    <EntitySet Name="Roles" EntityType="KlinicaDBModel.Role" />
+    <EntitySet Name="Services" EntityType="KlinicaDBModel.Service" />
+    <EntitySet Name="Settings" EntityType="KlinicaDBModel.Setting" />
+    <EntitySet Name="SocStatus" EntityType="KlinicaDBModel.SocStatu" />
+    <EntitySet Name="Status" EntityType="KlinicaDBModel.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="KlinicaDBModel.sysdiagram" />
+    <EntitySet Name="TimeTables" EntityType="KlinicaDBModel.TimeTable" />
+    <EntitySet Name="Users" EntityType="KlinicaDBModel.User" />
+    <EntitySet Name="Workers" EntityType="KlinicaDBModel.Worker" />
+    <EntitySet Name="WorkerFunctions" EntityType="KlinicaDBModel.WorkerFunction" />
+    <AssociationSet Name="FK_TimeTable_Cabinet" Association="KlinicaDBModel.FK_TimeTable_Cabinet">
+      <End Role="Cabinet" EntitySet="Cabinets" />
+      <End Role="TimeTable" EntitySet="TimeTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_Function" Association="KlinicaDBModel.FK_Services_Function">
+      <End Role="Function" EntitySet="Functions" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkerFunction_Function1" Association="KlinicaDBModel.FK_WorkerFunction_Function1">
+      <End Role="Function" EntitySet="Functions" />
+      <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoneyCard_Patient" Association="KlinicaDBModel.FK_HoneyCard_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="HoneyCard" EntitySet="HoneyCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoneyCard_Worker" Association="KlinicaDBModel.FK_HoneyCard_Worker">
+      <End Role="Worker" EntitySet="Workers" />
+      <End Role="HoneyCard" EntitySet="HoneyCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionService_HoneyCard1" Association="KlinicaDBModel.FK_ReceptionService_HoneyCard1">
+      <End Role="HoneyCard" EntitySet="HoneyCards" />
+      <End Role="ReceptionService" EntitySet="ReceptionServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Pfile" Association="KlinicaDBModel.FK_Patient_Pfile">
+      <End Role="Pfile" EntitySet="Pfiles" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_SocStatus" Association="KlinicaDBModel.FK_Patient_SocStatus">
+      <End Role="SocStatu" EntitySet="SocStatus" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_User" Association="KlinicaDBModel.FK_Patient_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_Pfile" Association="KlinicaDBModel.FK_Services_Pfile">
+      <End Role="Pfile" EntitySet="Pfiles" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Worker_Pfile" Association="KlinicaDBModel.FK_Worker_Pfile">
+      <End Role="Pfile" EntitySet="Pfiles" />
+      <End Role="Worker" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionService_Services" Association="KlinicaDBModel.FK_ReceptionService_Services">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="ReceptionService" EntitySet="ReceptionServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionService_TimeTable" Association="KlinicaDBModel.FK_ReceptionService_TimeTable">
+      <End Role="TimeTable" EntitySet="TimeTables" />
+      <End Role="ReceptionService" EntitySet="ReceptionServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="KlinicaDBModel.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_Status" Association="KlinicaDBModel.FK_Services_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Settings" Association="KlinicaDBModel.FK_User_Settings">
+      <End Role="Setting" EntitySet="Settings" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Status" Association="KlinicaDBModel.FK_User_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimeTable_WorkerFunction" Association="KlinicaDBModel.FK_TimeTable_WorkerFunction">
+      <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+      <End Role="TimeTable" EntitySet="TimeTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Worker_User" Association="KlinicaDBModel.FK_Worker_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Worker" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkerFunction_Worker1" Association="KlinicaDBModel.FK_WorkerFunction_Worker1">
+      <End Role="Worker" EntitySet="Workers" />
+      <End Role="WorkerFunction" EntitySet="WorkerFunctions" />
+    </AssociationSet>
+    <FunctionImport Name="DateStatus" />
+    <EntitySet Name="HistoryAuts" EntityType="KlinicaDBModel.HistoryAut" />
+    <EntitySet Name="HistoryLogins" EntityType="KlinicaDBModel.HistoryLogin" />
+    <AssociationSet Name="FK_HistoryAut_ReceptionService" Association="KlinicaDBModel.FK_HistoryAut_ReceptionService">
+      <End Role="ReceptionService" EntitySet="ReceptionServices" />
+      <End Role="HistoryAut" EntitySet="HistoryAuts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryLogin_User" Association="KlinicaDBModel.FK_HistoryLogin_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="HistoryLogin" EntitySet="HistoryLogins" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cabinet">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TimeTables" Relationship="KlinicaDBModel.FK_TimeTable_Cabinet" FromRole="Cabinet" ToRole="TimeTable" />
+  </EntityType>
+  <EntityType Name="Function">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Services" Relationship="KlinicaDBModel.FK_Services_Function" FromRole="Function" ToRole="Service" />
+    <NavigationProperty Name="WorkerFunctions" Relationship="KlinicaDBModel.FK_WorkerFunction_Function1" FromRole="Function" ToRole="WorkerFunction" />
+  </EntityType>
+  <EntityType Name="HoneyCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DateRegistration" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Therapist" Type="Int32" Nullable="false" />
+    <Property Name="PatientId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="KlinicaDBModel.FK_HoneyCard_Patient" FromRole="HoneyCard" ToRole="Patient" />
+    <NavigationProperty Name="Worker" Relationship="KlinicaDBModel.FK_HoneyCard_Worker" FromRole="HoneyCard" ToRole="Worker" />
+    <NavigationProperty Name="ReceptionServices" Relationship="KlinicaDBModel.FK_ReceptionService_HoneyCard1" FromRole="HoneyCard" ToRole="ReceptionService" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PassportData" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SNILS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SocStatusId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="PhotoFile" Type="Int32" />
+    <NavigationProperty Name="HoneyCards" Relationship="KlinicaDBModel.FK_HoneyCard_Patient" FromRole="Patient" ToRole="HoneyCard" />
+    <NavigationProperty Name="Pfile" Relationship="KlinicaDBModel.FK_Patient_Pfile" FromRole="Patient" ToRole="Pfile" />
+    <NavigationProperty Name="SocStatu" Relationship="KlinicaDBModel.FK_Patient_SocStatus" FromRole="Patient" ToRole="SocStatu" />
+    <NavigationProperty Name="User" Relationship="KlinicaDBModel.FK_Patient_User" FromRole="Patient" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Pfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Bin" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Patients" Relationship="KlinicaDBModel.FK_Patient_Pfile" FromRole="Pfile" ToRole="Patient" />
+    <NavigationProperty Name="Services" Relationship="KlinicaDBModel.FK_Services_Pfile" FromRole="Pfile" ToRole="Service" />
+    <NavigationProperty Name="Workers" Relationship="KlinicaDBModel.FK_Worker_Pfile" FromRole="Pfile" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="ReceptionService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="HoneyCardId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TimeTibleId" Type="Int32" Nullable="false" />
+    <Property Name="Protocol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ServicesId" Type="Int32" />
+    <NavigationProperty Name="HoneyCard" Relationship="KlinicaDBModel.FK_ReceptionService_HoneyCard1" FromRole="ReceptionService" ToRole="HoneyCard" />
+    <NavigationProperty Name="Service" Relationship="KlinicaDBModel.FK_ReceptionService_Services" FromRole="ReceptionService" ToRole="Service" />
+    <NavigationProperty Name="TimeTable" Relationship="KlinicaDBModel.FK_ReceptionService_TimeTable" FromRole="ReceptionService" ToRole="TimeTable" />
+    <NavigationProperty Name="HistoryAuts" Relationship="KlinicaDBModel.FK_HistoryAut_ReceptionService" FromRole="ReceptionService" ToRole="HistoryAut" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="KlinicaDBModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FunctionId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="Photo" Type="Int32" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Function" Relationship="KlinicaDBModel.FK_Services_Function" FromRole="Service" ToRole="Function" />
+    <NavigationProperty Name="Pfile" Relationship="KlinicaDBModel.FK_Services_Pfile" FromRole="Service" ToRole="Pfile" />
+    <NavigationProperty Name="ReceptionServices" Relationship="KlinicaDBModel.FK_ReceptionService_Services" FromRole="Service" ToRole="ReceptionService" />
+    <NavigationProperty Name="Status1" Relationship="KlinicaDBModel.FK_Services_Status" FromRole="Service" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Theme" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="KlinicaDBModel.FK_User_Settings" FromRole="Setting" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SocStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Patients" Relationship="KlinicaDBModel.FK_Patient_SocStatus" FromRole="SocStatu" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Services" Relationship="KlinicaDBModel.FK_Services_Status" FromRole="Status" ToRole="Service" />
+    <NavigationProperty Name="Users" Relationship="KlinicaDBModel.FK_User_Status" FromRole="Status" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TimeTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="DoctorId" Type="Int32" Nullable="false" />
+    <Property Name="CabinetNumber" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cabinet" Relationship="KlinicaDBModel.FK_TimeTable_Cabinet" FromRole="TimeTable" ToRole="Cabinet" />
+    <NavigationProperty Name="ReceptionServices" Relationship="KlinicaDBModel.FK_ReceptionService_TimeTable" FromRole="TimeTable" ToRole="ReceptionService" />
+    <NavigationProperty Name="WorkerFunction" Relationship="KlinicaDBModel.FK_TimeTable_WorkerFunction" FromRole="TimeTable" ToRole="WorkerFunction" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="SettingsID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Patients" Relationship="KlinicaDBModel.FK_Patient_User" FromRole="User" ToRole="Patient" />
+    <NavigationProperty Name="Role" Relationship="KlinicaDBModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Setting" Relationship="KlinicaDBModel.FK_User_Settings" FromRole="User" ToRole="Setting" />
+    <NavigationProperty Name="Status1" Relationship="KlinicaDBModel.FK_User_Status" FromRole="User" ToRole="Status" />
+    <NavigationProperty Name="Workers" Relationship="KlinicaDBModel.FK_Worker_User" FromRole="User" ToRole="Worker" />
+    <NavigationProperty Name="HistoryLogins" Relationship="KlinicaDBModel.FK_HistoryLogin_User" FromRole="User" ToRole="HistoryLogin" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PassportData" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SNILS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="PhotoFile" Type="Int32" />
+    <NavigationProperty Name="HoneyCards" Relationship="KlinicaDBModel.FK_HoneyCard_Worker" FromRole="Worker" ToRole="HoneyCard" />
+    <NavigationProperty Name="Pfile" Relationship="KlinicaDBModel.FK_Worker_Pfile" FromRole="Worker" ToRole="Pfile" />
+    <NavigationProperty Name="User" Relationship="KlinicaDBModel.FK_Worker_User" FromRole="Worker" ToRole="User" />
+    <NavigationProperty Name="WorkerFunctions" Relationship="KlinicaDBModel.FK_WorkerFunction_Worker1" FromRole="Worker" ToRole="WorkerFunction" />
+  </EntityType>
+  <EntityType Name="WorkerFunction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="WorkerId" Type="Int32" Nullable="false" />
+    <Property Name="FunctionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Function" Relationship="KlinicaDBModel.FK_WorkerFunction_Function1" FromRole="WorkerFunction" ToRole="Function" />
+    <NavigationProperty Name="TimeTables" Relationship="KlinicaDBModel.FK_TimeTable_WorkerFunction" FromRole="WorkerFunction" ToRole="TimeTable" />
+    <NavigationProperty Name="Worker" Relationship="KlinicaDBModel.FK_WorkerFunction_Worker1" FromRole="WorkerFunction" ToRole="Worker" />
+  </EntityType>
+  <Association Name="FK_TimeTable_Cabinet">
+    <End Type="KlinicaDBModel.Cabinet" Role="Cabinet" Multiplicity="1" />
+    <End Type="KlinicaDBModel.TimeTable" Role="TimeTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cabinet">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="TimeTable">
+        <PropertyRef Name="CabinetNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_Function">
+    <End Type="KlinicaDBModel.Function" Role="Function" Multiplicity="1" />
+    <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Function">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="FunctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkerFunction_Function1">
+    <End Type="KlinicaDBModel.Function" Role="Function" Multiplicity="1" />
+    <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Function">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkerFunction">
+        <PropertyRef Name="FunctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoneyCard_Patient">
+    <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="KlinicaDBModel.HoneyCard" Role="HoneyCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HoneyCard">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoneyCard_Worker">
+    <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="1" />
+    <End Type="KlinicaDBModel.HoneyCard" Role="HoneyCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HoneyCard">
+        <PropertyRef Name="Therapist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionService_HoneyCard1">
+    <End Type="KlinicaDBModel.HoneyCard" Role="HoneyCard" Multiplicity="1" />
+    <End Type="KlinicaDBModel.ReceptionService" Role="ReceptionService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoneyCard">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceptionService">
+        <PropertyRef Name="HoneyCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Pfile">
+    <End Type="KlinicaDBModel.Pfile" Role="Pfile" Multiplicity="0..1" />
+    <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="PhotoFile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_SocStatus">
+    <End Type="KlinicaDBModel.SocStatu" Role="SocStatu" Multiplicity="1" />
+    <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="SocStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_User">
+    <End Type="KlinicaDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="KlinicaDBModel.Patient" Role="Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_Pfile">
+    <End Type="KlinicaDBModel.Pfile" Role="Pfile" Multiplicity="0..1" />
+    <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="Photo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Worker_Pfile">
+    <End Type="KlinicaDBModel.Pfile" Role="Pfile" Multiplicity="0..1" />
+    <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="PhotoFile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionService_Services">
+    <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="0..1" />
+    <End Type="KlinicaDBModel.ReceptionService" Role="ReceptionService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceptionService">
+        <PropertyRef Name="ServicesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionService_TimeTable">
+    <End Type="KlinicaDBModel.TimeTable" Role="TimeTable" Multiplicity="1" />
+    <End Type="KlinicaDBModel.ReceptionService" Role="ReceptionService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReceptionService">
+        <PropertyRef Name="TimeTibleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="KlinicaDBModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="KlinicaDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_Status">
+    <End Type="KlinicaDBModel.Status" Role="Status" Multiplicity="1" />
+    <End Type="KlinicaDBModel.Service" Role="Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Settings">
+    <End Type="KlinicaDBModel.Setting" Role="Setting" Multiplicity="1" />
+    <End Type="KlinicaDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Setting">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="SettingsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Status">
+    <End Type="KlinicaDBModel.Status" Role="Status" Multiplicity="1" />
+    <End Type="KlinicaDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimeTable_WorkerFunction">
+    <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="1" />
+    <End Type="KlinicaDBModel.TimeTable" Role="TimeTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkerFunction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTable">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Worker_User">
+    <End Type="KlinicaDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkerFunction_Worker1">
+    <End Type="KlinicaDBModel.Worker" Role="Worker" Multiplicity="1" />
+    <End Type="KlinicaDBModel.WorkerFunction" Role="WorkerFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkerFunction">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HistoryAut">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReceptionService" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ReceptionService1" Relationship="KlinicaDBModel.FK_HistoryAut_ReceptionService" FromRole="HistoryAut" ToRole="ReceptionService" />
+  </EntityType>
+  <EntityType Name="HistoryLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Datetime" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Successfully" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="KlinicaDBModel.FK_HistoryLogin_User" FromRole="HistoryLogin" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_HistoryAut_ReceptionService">
+    <End Type="KlinicaDBModel.ReceptionService" Role="ReceptionService" Multiplicity="1" />
+    <End Type="KlinicaDBModel.HistoryAut" Role="HistoryAut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReceptionService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistoryAut">
+        <PropertyRef Name="ReceptionService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoryLogin_User">
+    <End Type="KlinicaDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="KlinicaDBModel.HistoryLogin" Role="HistoryLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistoryLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

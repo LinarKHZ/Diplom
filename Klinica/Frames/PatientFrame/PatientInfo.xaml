@@ -1,0 +1,121 @@
+﻿<Page x:Class="Klinica.Frames.PatientFrame.PatientInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Klinica.Frames.PatientFrame"
+      mc:Ignorable="d" 
+      Height="974" d:Width="1600"
+      Title="NewPatient" >
+
+    <Grid x:Name="MainGrid" Background="White">
+
+        <TextBlock Background="#FFCBF7FF" Height="50" VerticalAlignment="Top" Text="Информация о пациенте" FontSize="24" FontFamily="Calibri" TextAlignment="Center"/>
+        <StackPanel x:Name="StackItem" Margin="50,50,0,0">
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Фамилия:*" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding LastName}" Height="30" Width="650" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Имя:*" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding Name}" Height="30" Width="650" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Отчество:*" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding Patronymic}" Height="30" Width="650" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Дата рождения:*" Width="150" TextAlignment="Left"  />
+                <DatePicker SelectedDate="{Binding Birthday}" Height="30" Width="650"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Пол:*" Width="150" TextAlignment="Left"  />
+                <ComboBox SelectedIndex="{Binding PatientSex}" Height="30" Width="650">
+                    <ComboBoxItem>м</ComboBoxItem>
+                    <ComboBoxItem>ж</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Паспортные данные:*" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding PassportData}" Height="30" Width="650"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Дата выдачи:" Width="150" TextAlignment="Left"  />
+                <DatePicker SelectedDate="{Binding PassportDate}" Height="30" Width="650"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Отделение:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding PassportDivisionCode}" Height="30" Width="650"  MaxLength="7"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Снилс:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding SNILS}" Height="30" Width="650" MaxLength="11"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="ИНН:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding INN}" Height="30" Width="650" MaxLength="15"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Полис:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding Polis}" Height="30" Width="650" MaxLength="16"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Адресс регистрации:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding AdressRegistration}" Height="30" Width="650" MaxLength="150"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Адресс проживания:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding AdressResidence}" Height="30" Width="650" MaxLength="150"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Телефон:*" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding Telephone}" Height="30" Width="650" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Email:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding Email}" Height="30" Width="650" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Домашний телефон:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding HomeTelephone}" Height="30" Width="650" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Место работы:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding PlaceWork}" Height="30" Width="650"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" Text="Соц статус:" Width="150" TextAlignment="Left"  />
+                <ComboBox x:Name="BenefitBox" SelectedIndex="{Binding Benefit}" Height="30" Width="650"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="800" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock Margin="0,10,0,0" VerticalAlignment="Top" Text="Коментарий:" Width="150" TextAlignment="Left"  />
+                <TextBox Text="{Binding Comment}" SpellCheck.IsEnabled="True" Language="ru-ru" Height="150" Width="650" TextWrapping="WrapWithOverflow"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="50,50,0,0" Height="50" Content="Сохранить изменения" Background="#FFCBF7FF" Width="300" Click="Save_Click" HorizontalAlignment="Left"/>
+                <Button Margin="50,50,0,0" Height="50"  Content="Отменить изменения" Background="#FFCBF7FF" Width="300" Click="Exit_Click" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>

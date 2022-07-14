@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="442328be00e647c885fe5a67de9b711a" Name="Diagram1">
+        <EntityTypeShape EntityType="KlinicaDBModel.Cabinet" Width="1.5" PointX="13.5" PointY="1.25" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Function" Width="1.5" PointX="11.25" PointY="3" />
+        <EntityTypeShape EntityType="KlinicaDBModel.HoneyCard" Width="1.5" PointX="13.5" PointY="6.75" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Patient" Width="1.5" PointX="8.25" PointY="5.875" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Pfile" Width="1.5" PointX="6" PointY="13.125" />
+        <EntityTypeShape EntityType="KlinicaDBModel.ReceptionService" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Role" Width="1.5" PointX="3.75" PointY="11" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Service" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Setting" Width="1.5" PointX="3.75" PointY="13.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.SocStatu" Width="1.5" PointX="6" PointY="10.75" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Status" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="KlinicaDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KlinicaDBModel.TimeTable" Width="1.5" PointX="15.75" PointY="3.625" />
+        <EntityTypeShape EntityType="KlinicaDBModel.User" Width="1.5" PointX="6" PointY="6.375" />
+        <EntityTypeShape EntityType="KlinicaDBModel.Worker" Width="1.5" PointX="11.25" PointY="5.875" />
+        <EntityTypeShape EntityType="KlinicaDBModel.WorkerFunction" Width="1.5" PointX="13.5" PointY="3.875" />
+        <AssociationConnector Association="KlinicaDBModel.FK_TimeTable_Cabinet" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Services_Function" />
+        <AssociationConnector Association="KlinicaDBModel.FK_WorkerFunction_Function1" />
+        <AssociationConnector Association="KlinicaDBModel.FK_HoneyCard_Patient" />
+        <AssociationConnector Association="KlinicaDBModel.FK_HoneyCard_Worker" />
+        <AssociationConnector Association="KlinicaDBModel.FK_ReceptionService_HoneyCard1" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Patient_Pfile" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Patient_SocStatus" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Patient_User" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Services_Pfile" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Worker_Pfile" />
+        <AssociationConnector Association="KlinicaDBModel.FK_ReceptionService_Services" />
+        <AssociationConnector Association="KlinicaDBModel.FK_ReceptionService_TimeTable" />
+        <AssociationConnector Association="KlinicaDBModel.FK_User_Role" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Services_Status" />
+        <AssociationConnector Association="KlinicaDBModel.FK_User_Settings" />
+        <AssociationConnector Association="KlinicaDBModel.FK_User_Status" />
+        <AssociationConnector Association="KlinicaDBModel.FK_TimeTable_WorkerFunction" />
+        <AssociationConnector Association="KlinicaDBModel.FK_Worker_User" />
+        <AssociationConnector Association="KlinicaDBModel.FK_WorkerFunction_Worker1" />
+        <EntityTypeShape EntityType="KlinicaDBModel.HistoryAut" Width="1.5" PointX="7.5" PointY="3.25" />
+        <EntityTypeShape EntityType="KlinicaDBModel.HistoryLogin" Width="1.5" PointX="8.25" PointY="11" />
+        <AssociationConnector Association="KlinicaDBModel.FK_HistoryAut_ReceptionService" />
+        <AssociationConnector Association="KlinicaDBModel.FK_HistoryLogin_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

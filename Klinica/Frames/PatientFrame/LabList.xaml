@@ -1,0 +1,169 @@
+﻿<Page x:Class="Klinica.Frames.PatientFrame.LabList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Klinica.Frames.PatientFrame"
+      mc:Ignorable="d" 
+      d:DesignHeight="974" d:DesignWidth="1600"
+      Title="LabList">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Background="#FFCBF7FF" Height="30" VerticalAlignment="Top" Text="Поиск" FontSize="24" FontFamily="Calibri" TextAlignment="Center"/>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Номер:" Width="100" TextAlignment="Left"  />
+            <TextBox x:Name="Number" Height="30" MaxLength="50"/>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Название:" Width="100" TextAlignment="Left"  />
+            <TextBox x:Name="NName" Height="30" MaxLength="50"/>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="ФИО пациента:" Width="100" TextAlignment="Left"  />
+            <TextBox x:Name="PName" Height="30" MaxLength="50"/>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Коментарий:" Width="200" TextAlignment="Left"  />
+            <TextBox x:Name="Comment" Height="30" MaxLength="50"/>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Готовность:" Width="100" TextAlignment="Left"  />
+            <ComboBox x:Name="catbox" Height="30">
+                <ComboBoxItem>Все</ComboBoxItem>
+                <ComboBoxItem>Готовые</ComboBoxItem>
+                <ComboBoxItem>Не готовые</ComboBoxItem>
+            </ComboBox>
+            <Button Margin="0,30,0,0" Height="50" Content="Поиск"  Background="#FFCBF7FF" Click="Save_Click"/>
+            <Button  Height="50" Content="Сбросить" Background="#FFCBF7FF" Click="Exit_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Column="1" Background="#FFCBF7FF" Height="30" VerticalAlignment="Top" Text="Список документов" FontSize="24" FontFamily="Calibri" TextAlignment="Center"/>
+        <ListView Grid.Column="1" Margin="0,32,0,0" x:Name="DocList" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.Resources>
+                <Style  TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent">
+                                    <Label x:Name="ContentHeader" 
+                                           Content="{TemplateBinding Content}" 
+                                           Padding="0" Width="{TemplateBinding Width}" 
+                                           HorizontalAlignment="Left" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Padding" Value="0,0,23,0" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="70" Header="Номер">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="150">
+                                    <TextBlock  Text="{Binding Path= Id}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="300" Header="Название">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="300">
+                                    <TextBlock  Text="{Binding Path= LabCatalog.Appointment.Service.Name}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12" TextWrapping="WrapWithOverflow"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="250" Header="ФИО Лаборанта">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="250">
+                                    <TextBlock  Text="{Binding Path= WorkerFunction.Worker.WorkerName}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" Header="Время сдачи анализа">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="100">
+                                    <TextBlock  Text="{Binding Path= LabCatalog.DateTimeTaken}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="175" Header="Ожидаемое время готовности">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="175">
+                                    <TextBlock  Text="{Binding Path= LabCatalog.DateResultExpected}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" Header="Реальное время">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="150">
+                                    <TextBlock  Text="{Binding Path= LabCatalog.DateResultReal}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="300" Header="Результат">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,0,2" 
+                                        BorderBrush="#000000" 
+                                        Background="Transparent"
+                                                Width="300">
+                                    <TextBlock  Text="{Binding Path= Result}"
+                                                TextAlignment="Left"                                                   
+                                                FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

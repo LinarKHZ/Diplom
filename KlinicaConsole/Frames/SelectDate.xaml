@@ -1,0 +1,65 @@
+﻿<Page x:Class="KlinicaConsole.Frames.SelectDate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KlinicaConsole.Frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SelectDate" Background="WhiteSmoke">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" Content="Назад" HorizontalAlignment="Center" Width="300" Height="65"  VerticalAlignment="Center" Background="#FFCBF7FF" FontFamily="Calibri Light" FontSize="24" Click="Button_Click"/>
+        <Viewbox Grid.Column="1" Grid.Row="1" Stretch="UniformToFill" StretchDirection="DownOnly">
+
+            <Calendar  x:Name="CalMane" SelectionMode="MultipleRange" SelectedDatesChanged="CalendarMine_SelectedDatesChanged">
+                <Calendar.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="3" ScaleY="2.5"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Calendar.LayoutTransform>
+            </Calendar>
+        </Viewbox>
+        <ListBox Grid.Column="1" Grid.Row="2" x:Name="ButPanel" Background="WhiteSmoke" BorderThickness="0">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DateClick" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="8" Rows="4"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Name="Bord1" Background="#FFCBF7FF">
+                        <TextBlock  Text="{Binding Time}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" FontSize="24" FontWeight="Bold"/>
+                    </Border>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="2">
+                            <Setter TargetName="Bord1" Property="Background" Value="#FF757575" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>                
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>
